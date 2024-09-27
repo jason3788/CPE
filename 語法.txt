@@ -1,0 +1,601 @@
+快速判斷子字串
+#include<string.h>
+if(strstr(str1.c_str(),str2.c_str())!=NULL){
+   cout<<"y"<<endl;
+}
+else{
+   cout<<"n"<<endl;
+}
+
+
+const int N = 100000000;
+const int SQRTN = sqrt((double) N);
+bool isprime[N + 1];
+// Eratosthenes筛选法
+void esieve(void)
+{
+    memset(isprime, true, sizeof(isprime));
+
+    isprime[0] = isprime[1] = false;
+    for(int i = 2; i <= SQRTN; i++) {
+        if(isprime[i]) {
+            for(int j = i * i; j <= N; j += i)  //筛选
+                isprime[j] = false;
+        }
+    }
+ }
+
+int main()
+{
+    esieve();
+}
+
+
+
+
+快速設置陣列
+#include<string.h>
+memset(visit,0,sizeof(visit));
+
+小數點出現問題時
++1e-6
+
+
+#include <deque>
+push_back：把一個元素添加到尾端
+push_front：把一個元素插入到頭端
+pop_back：移除最後一個元素(尾端)
+pop_front：移除第一個元素(頭端)
+erase
+
+
+無條件進位
+cout<<int(ans+0.99)<<endl;
+
+
+質因數分解:
+#include<iostream>
+using namespace std;
+
+int arr[10000],count=0;
+
+
+void fun(int n){
+	int i;
+	for(i=2;i<=n/i;i++){
+		while(n%i==0){
+			arr[count]=i;
+			count++;
+			n/=i;
+		}
+	}
+	if(n!=1){
+		arr[count]=n;
+		count++;
+	}
+}
+
+int main(){
+	int i;
+	for(i=1;i<1000000;i++){
+		count=0;
+		fun(i);
+		
+		int j;
+		for(j=0;j<count;j++){
+			cout<<arr[j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+
+
+
+bool cmp(char a,char b){
+	char low_a=a,low_b=b;
+	if(low_a>='A' && low_a<='Z'){
+		low_a=char(int(a)+32);
+	}
+	if(low_b>='A' && low_b<='Z'){
+		low_b=char(int(b)+32);
+	}
+	
+	if(low_a==low_b){
+		return a<b;	//代表我想呈現的樣子
+	}
+	else{
+		return low_a<low_b;  //代表我想呈現的樣子
+	}
+}
+
+vector:
+#include <vector>
+
+宣告:vector<bool> prime(18409201);
+
+插入到特定位置:
+vector<int> v={1,2,6};
+vector<int> extra={3, 4, 5};
+v.insert(v.begin()+2,extra.begin(),extra.end());
+int i;
+for(i=0;i<v.size();i++){
+	cout<<v[i]<<endl;
+}
+輸出:
+1↵\r\n
+2↵\r\n
+3↵\r\n
+4↵\r\n
+5↵\r\n
+6↵\r\n
+
+刪除 vector 中一個或多個元素:
+v.erase(v.begin()+2); 刪除2
+v.erase(v.begin()+2,v.begin()+4); 刪除2~3
+
+
+
+stack:
+#include<stack>
+stack <int> stk;
+宣告：
+stack <int> stk;
+把元素 x 加進 stack:
+stk.push(x);
+取值：
+x = stk.top();
+移除已經讀取的值：
+stk.pop();
+判斷是否為空的stack:
+stk.empty() 回傳true
+stk.size() 回傳零
+
+
+queue 常用功能
+以下為 std::queue 內常用的成員函式
+push：把值加到尾巴
+pop：移除頭的值
+back：回傳尾巴的值
+front：回傳頭的值
+size：回傳目前長度
+empty：回傳是否為空
+
+
+數字其實可以非常大，不使用long long int 改用double
+#include <iomanip>
+double n,p;
+cout << fixed << setprecision(0) << n << " " << p << endl;
+
+
+在O(logn)計算a^b  (快速冪)
+long long int binpow(long long int a, long long int b) {
+	if(b==0){
+		return 1;
+	}
+	long long int result = binpow(a,b/2);
+	if(b%2==1){
+		return result*result*a;
+	}
+	else{
+		return result*result;
+	}
+}
+
+
+
+
+參考:
+void fnReference(int &iValue){
+     iValue = iValue +1;
+     cout << iValue << endl;        
+}
+main(){  
+          
+     int iValue = 2;
+     fnReference(iValue);
+     cout << iValue << endl;
+        
+     system("pause");
+     return 0; 
+}
+
+
+int main ()
+{
+  string str ("This is an example phrase.");
+  string::iterator it;
+
+  // 第(1)种用法
+  str.erase (10,8);
+  cout << str << endl;        // "This is an phrase."
+
+  // 第(2)种用法
+  it=str.begin()+9;
+  str.erase (it);
+  cout << str << endl;        // "This is a phrase."
+
+  // 第(3)种用法
+  str.erase (str.begin()+5, str.end()-7);
+  cout << str << endl;        // "This phrase."
+  return 0;
+}
+
+
+set:
+#include <iostream>
+#include <set>
+
+int main() {
+    std::set<int> myset = {3, 1};
+    myset.insert(2);
+    myset.insert(5);
+    myset.insert(4);
+    myset.insert(5);
+    myset.insert(4);
+
+    for (const auto &s : myset) {
+        std::cout << s << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}
+
+輸出:1 2 3 4 5
+
+刪除:
+myset.erase(3);
+
+struct
+
+查詢
+myset.count(5);
+
+
+#include<map>
+宣告字典方式:map<int,int> dict{};
+加入元素: dict[200]=1;
+
+#include <iostream>
+#include<map> 
+using namespace std;
+
+int main(){
+	map <int,int> dict={};
+	dict[0]=10;
+	dict[1]=50;
+	dict[4]=60;
+	dict[26]= 100;
+	
+	int i;
+
+	for (const auto& s : dict) {
+		cout<<s.first<<" "<<s.second<<endl;
+	}
+}
+
+輸出:
+0 10
+1 50
+4 60
+26 100
+
+
+uva49
+10093
+排列
+組合
+
+
+無限等比和
+a1/(1-r)
+
+sting的長除法
+int fun(string str,int n){
+	
+	int i,num=0;
+	for(i=0;i<str.length();i++){
+		num=(int(str[i])-48)+(num*10);
+		//cout<<num/n;
+		num=num%n;
+		
+	}
+	if(num==0){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+
+另一種快速直接判斷質數方法:
+int is_prime(int n){
+  	int i;
+	for(i=2;i<=sqrt(n);i++){
+		if(n%i==0){
+			return 0;
+		}
+	}
+	return 1;
+}
+
+快速建立質數表:
+int find_prime(){
+	int i;
+	for(i=2;i<1000000;i++){
+		prime[i]=1;
+	}
+	for(i=2;i<1000000;i++){
+		int index=2;
+		while(i*index<1000000){
+			prime[i*index]=0;
+			index++;
+		}
+	}
+	return 1;
+} 
+
+
+在sort中可以自訂義比較的方法
+先宣告一個函式
+bool cmp(int a,int b){
+    return abs(a)>abs(b);
+}
+sort(a,a+n,cmp);
+
+要用cout印出小數點後幾位
+先#include<iomanip>
+int main(){
+  float a=3.141595;
+  cout<<fixed<<setprecision(3)<<a<<endl;
+}
+
+宣告全域陣列可防止陣列大小不夠
+
+刪除
+str.erase(6,4)
+從位置6刪除4個字元
+
+排列方法
+for(j=0;j<(1<<s.length());j++){
+	string str="";
+	for(k=0;k<s.length();k++){
+		if(j&(1<<k)){
+		   str+=s[k];
+		}
+	}
+}
+
+組合方法
+*必須要先進行sort
+int a[5] = {9, 3, 1, 7, 5};
+sort(a,a+5);
+do {
+     int i;
+     for(i=0;i<5;i++){
+       cout<<a[i];
+     }
+     cout<<endl;
+ } while (next_permutation(a, a+5));
+
+字串排列
+#include<algorithm>
+sort(str.begin(),str.end())
+
+
+int num=atoi(str.c_str()); #string轉整數
+
+#include<algorithm>
+__gcd(a,b) #最大公因數
+__
+
+getline(cin,s);  保留空白字    10222: Decode the Mad man  2021/10/19 CPE
+
+string.length()
+s[j].empty()
+
+#include<algorithm>    		11455 Behold My Quadrangle 2018/05/29 CPE
+int a[5];
+sort(a,a+5);	
+sort(a,a+10,complare); 大到小
+
+
+ASCII
+
+0 48
+A 65
+a 97		        
+
+
+if(getchar()=='\n')
+
+while(getline(cin,s[j])){  (輸入字串直到讀到空行)
+	if(s[j].empty())
+	   break;
+	j++;
+}
+
+
+#include<math.h>
+pow(5,3)
+sqrt(25)
+
+
+#include<math.h>
+
+M_PI  pi
+sin(弧度)    弧度=度*(M_PI/180)
+pow(6,3)
+
+平行四邊形 對角座標相加會相等
+
+
+
+小數計算全部都用double 包括int的
+
+
+重看:12 18 31 37 38 40 25 47
+
+continue敘述可以馬上繼續下一次迴圈的執行
+
+
+
+一個一個字元加入字串
+while(temp[j]!=' '){
+   str[i]+=temp[j];
+   j++;
+}
+
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main(){
+	string s;
+	while(cin>>s){
+		int i;
+		int sum=0,max=1;
+		for(i=0;i<s.length();i++){
+			if(s[i]>='0' && s[i]<='9'){
+				sum+=int(s[i])-48;
+				if(int(s[i])-48>max){
+					max=int(s[i])-48;
+				}
+			}
+			else if(s[i]>='A' && s[i]<='Z'){
+				sum+=int(s[i])-55;
+				if(int(s[i])-54>max){
+					max=int(s[i])-55;
+				}
+			}
+			else if(s[i]>='a' && s[i]<='z'){
+				sum+=int(s[i])-61;
+				if(int(s[i])-60>max){
+					max=int(s[i])-61;
+				}
+			}
+		}
+		//cout<<max<<" "<<sum<<endl;
+		for(i=max+1;i<=62;i++){
+			if(sum%(i-1)==0){
+				cout<<i<<endl;
+				break;
+			}
+			else if(i==62)
+				cout<<"such number is impossible!"<<endl;
+		}
+	}
+}
+
+47
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main(){
+	int a,b;
+	cin>>a>>b;
+	int x,y,stop[a+1][b+1]={};
+	char dir;
+	while(cin>>x>>y>>dir){
+		string s;
+		cin>>s;
+		int i;
+		for(i=0;i<s.length();i++){
+			if(stop[x][y]==1 && s[i]=='F'){
+				if(dir=='N'){
+						if(y+1>b){
+							continue;
+						}
+						else
+							y++;
+				}
+				else if(dir=='S'){
+						if(y-1<0){
+							continue;
+						}
+						else
+							y--;
+					}
+					else if(dir=='W'){
+						if(x-1<0){
+							continue;
+						}
+						else
+							x--;
+					}
+					else if(dir=='E'){
+						if(x+1>a){
+							continue;
+						}
+						else
+							x++;
+					}
+			}
+			else{
+				if(s[i]=='R'){
+					if(dir=='N')
+						dir='E';
+					else if(dir=='S')
+						dir='W';
+					else if(dir=='W')
+						dir='N';
+					else if(dir=='E')
+						dir='S';
+				}
+				else if(s[i]=='L'){
+					if(dir=='N')
+						dir='W';
+					else if(dir=='S')
+						dir='E';
+					else if(dir=='W')
+						dir='S';
+					else if(dir=='E')
+						dir='N';
+				}
+				else if(s[i]=='F'){
+					if(dir=='N'){
+						if(y+1>b){
+							stop[x][y]=1;
+							cout<<x<<" "<<y<<" "<<dir<<" LOST"<<endl;
+							break;
+						}
+						else
+							y++;
+					}
+					else if(dir=='S'){
+						if(y-1<0){
+							stop[x][y]=1;
+							cout<<x<<" "<<y<<" "<<dir<<" LOST"<<endl;
+							break;
+						}
+						else
+							y--;
+					}
+					else if(dir=='W'){
+						if(x-1<0){
+							stop[x][y]=1;
+							cout<<x<<" "<<y<<" "<<dir<<" LOST"<<endl;
+							break;
+						}
+						else
+							x--;
+					}
+					else if(dir=='E'){
+						if(x+1>a){
+							stop[x][y]=1;
+							cout<<x<<" "<<y<<" "<<dir<<" LOST"<<endl;
+							break;
+						}
+						else
+							x++;
+					}
+				}
+				if(i==s.length()-1){
+					cout<<x<<" "<<y<<" "<<dir<<endl;
+				}
+			}
+		}
+	}
+}
